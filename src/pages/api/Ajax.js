@@ -1,7 +1,7 @@
 import axios from "axios";
 const Axios = axios.create({
   // baseURL: "http://192.168.0.47:8016",
-  baseURL: "https://ripple.cbindex.finance/api",
+  baseURL: "https://bsc.cbindex.finance/api",
   timeout: 36000,
 });
 
