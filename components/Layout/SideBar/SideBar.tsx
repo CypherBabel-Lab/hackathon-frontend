@@ -122,6 +122,11 @@ const SideBar = ({ }) => {
       setLoading(true)
       setModalContentLoading(true)
       await claimFaucetApi(address).then((d) => {
+        if (d.code !== 0) {
+          setModalContentLoading(false)
+          setMessage(errorInfo)
+          return
+        }
         setCoolDown(d.data.coolDown);
         if (d.data.ok) {
           setCoolDown(120);

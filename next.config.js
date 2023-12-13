@@ -10,7 +10,7 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "/vaults",
+        destination: "/activefund/vaults",
         permanent: false,
       },
     ];

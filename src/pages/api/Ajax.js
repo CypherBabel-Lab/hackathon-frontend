@@ -1,7 +1,6 @@
 import axios from "axios";
 const Axios = axios.create({
-  // baseURL: "http://192.168.0.47:8016",
-  baseURL: "https://bsc.cbindex.finance/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   timeout: 36000,
 });
 
@@ -28,7 +27,7 @@ Axios.interceptors.response.use(
       } else if (error.response.status === 500) {
         alert("Server Error");
       }
-      return Promise.reject(error);
+      return JSON.parse(JSON.stringify(error.response.data))
     } else if (error.message === "timeout of 3600ms exceeded") {
       alert("Request Timeout");
       window.location.reload();

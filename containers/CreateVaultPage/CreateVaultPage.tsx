@@ -191,7 +191,7 @@ const CreateVaultPage = () => {
         </div>
       ) : (
         <div className={classes.noLoginBox}>
-          Please connect to wallet and switch to the XRPL EVM sidechain.
+          Please connect to wallet and switch to the {JSON.parse(localStorage.getItem("chainInfo") as any).chainConf.networkName}
         </div>
       )}
       {/*Modal*/}
