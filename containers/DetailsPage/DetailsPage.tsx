@@ -53,6 +53,7 @@ let publicClient: any;
 import Image from "next/image";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import ValueEvaluator from "../../ABI/ValueEvaluator.json";
+import { getImageUrl } from '../../utils/TokenIcon/getIconImage'
 const marks = {
   0: "0%",
   25: "25%",
@@ -862,9 +863,7 @@ const DetailsPage = () => {
                       -{Number(sellToken.amount).toFixed(8)} {sellToken.label}
                       <Avatar
                         style={{ margin: "4px" }}
-                        src={`${ServerAssetes.Icon +
-                          icon[sellToken?.label as keyof typeof icon]
-                          }`}
+                        src={`${ServerAssetes.Icon + getImageUrl(sellToken?.label)}`}
                       />
                     </span>
                     <span
@@ -892,9 +891,7 @@ const DetailsPage = () => {
                       +{Number(buyToken.amount).toFixed(8)} {buyToken.label}
                       <Avatar
                         style={{ margin: "4px" }}
-                        src={`${ServerAssetes.Icon +
-                          icon[buyToken?.label as keyof typeof icon]
-                          }`}
+                        src={`${ServerAssetes.Icon + getImageUrl(buyToken?.label)}`}
                       />
                     </span>
                   </div>
@@ -1222,11 +1219,7 @@ const DetailsPage = () => {
               {vaultInfo.denominationAsset?.symbol}
               <div className={classes.assetLogo}>
                 <Image
-                  src={`${ServerAssetes.Icon +
-                    icon[
-                    vaultInfo.denominationAsset?.symbol as keyof typeof icon
-                    ]
-                    }`}
+                  src={`${ServerAssetes.Icon + getImageUrl(vaultInfo.denominationAsset?.symbol)}`}
                   width={20}
                   height={20}
                   alt="icon"

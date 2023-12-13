@@ -3,6 +3,7 @@ import { Table, Avatar } from "antd";
 import icon from "../../../utils/TokenIcon/Icon.json";
 import { ServerAssetes } from "../../../utils/consts/Consts";
 import classes from "./style.module.less";
+import { getImageUrl } from '../../../utils/TokenIcon/getIconImage'
 const AssetTable = ({ assetList }: any) => {
   const columns = [
     {
@@ -10,11 +11,10 @@ const AssetTable = ({ assetList }: any) => {
       dataIndex: "asset",
       key: "asset",
       render: (text: any, row: any) => {
-        let iconAddress = icon[row.asset.symbol as keyof typeof icon];
         return (
           <div className={classes.denominationAssetColumn}>
             <Avatar
-              src={`${ServerAssetes.Icon + iconAddress}`}
+              src={`${ServerAssetes.Icon + getImageUrl(row.asset.symbol)}`}
               className={classes.avatar}
             />
             {row.asset.symbol}

@@ -8,6 +8,7 @@ import Image from "next/image";
 import cbiLogo from '../../../public/logo/cbi_logo.png'
 import FormatTime from "../../Time/FormatTime";
 import { Tooltip } from 'antd'
+import { getImageUrl } from '../../../utils/TokenIcon/getIconImage'
 const ActivityTable = ({ activityList, vaultInfo }: any) => {
     const redemptionFuc = (array: any) => {
         let obj = { amount: 0, sharesRedeemed: 0 }
@@ -24,7 +25,7 @@ const ActivityTable = ({ activityList, vaultInfo }: any) => {
             return <div style={{
                 display: "flex"
             }}>
-                {item.asset.symbol}<Avatar className={classes.avatar} src={`${ServerAssetes.Icon + icon[item.asset.symbol as keyof typeof icon]}`} /> Amount: {(item.amountUsd / item.denominationAssetPrice).toFixed(2)}
+                {item.asset.symbol}<Avatar className={classes.avatar} src={`${ServerAssetes.Icon + getImageUrl(item.asset.symbol)}`} /> Amount: {(item.amountUsd / item.denominationAssetPrice).toFixed(2)}
             </div>
         })
         return text
@@ -44,7 +45,7 @@ const ActivityTable = ({ activityList, vaultInfo }: any) => {
                                             cursor: "pointer",
                                         }}
                                         onClick={() => {
-                                            window.open(`https://evm-sidechain.xrpl.org/tx/${item.txHash}`)
+                                            window.open(`${JSON.parse(localStorage.getItem("chainInfo") as any).chainConf.blockExplorer}tx/${item.txHash}`)
                                         }}
                                     />
                                 </div>
@@ -65,7 +66,7 @@ const ActivityTable = ({ activityList, vaultInfo }: any) => {
                                             cursor: "pointer",
                                         }}
                                         onClick={() => {
-                                            window.open(`https://evm-sidechain.xrpl.org/address/${vaultInfo.vaultAddress}`)
+                                            window.open(`${JSON.parse(localStorage.getItem("chainInfo") as any).chainConf.blockExplorer}address/${vaultInfo.vaultAddress}`)
                                         }}
                                     />
                                 </div>
@@ -89,7 +90,7 @@ const ActivityTable = ({ activityList, vaultInfo }: any) => {
 
                                     </div>
                                     <div className={classes.cardRightInfo}>
-                                        {Number(item.detail.outgoingAssetAmount).toFixed(8)}  {item.detail.outgoingAsset.symbol}    <Avatar className={classes.avatar} src={`${ServerAssetes.Icon + icon[item.detail.outgoingAsset.symbol as keyof typeof icon]}`} />
+                                        {Number(item.detail.outgoingAssetAmount).toFixed(8)}  {item.detail.outgoingAsset.symbol}    <Avatar className={classes.avatar} src={`${ServerAssetes.Icon + getImageUrl(item.detail.outgoingAsset.symbol)}`} />
                                     </div>
                                 </div>
                                 {/*incomingAsset*/}
@@ -98,7 +99,7 @@ const ActivityTable = ({ activityList, vaultInfo }: any) => {
                                         Shares Received
                                     </div>
                                     <div>
-                                        {Number(item.detail.incomingAssetAmount).toFixed(2)} {item.detail.incomingAsset.symbol} <Avatar className={classes.avatar} src={`${ServerAssetes.Icon + icon[item.detail.incomingAsset.symbol as keyof typeof icon]}`} />
+                                        {Number(item.detail.incomingAssetAmount).toFixed(2)} {item.detail.incomingAsset.symbol} <Avatar className={classes.avatar} src={`${ServerAssetes.Icon + getImageUrl(item.detail.incomingAsset.symbol)}`} />
                                     </div>
                                 </div>
                                 {/* Depositor  */}
@@ -114,7 +115,7 @@ const ActivityTable = ({ activityList, vaultInfo }: any) => {
                                                 cursor: "pointer",
                                             }}
                                             onClick={() => {
-                                                window.open(`https://evm-sidechain.xrpl.org/address/${item.detail.caller}`)
+                                                window.open(`${JSON.parse(localStorage.getItem("chainInfo") as any).chainConf.blockExplorer}address/${item.detail.caller}`)
                                             }}
                                         />
                                     </div>
@@ -156,7 +157,7 @@ const ActivityTable = ({ activityList, vaultInfo }: any) => {
                                             cursor: "pointer",
                                         }}
                                         onClick={() => {
-                                            window.open(`https://evm-sidechain.xrpl.org/address/${item.detail[0].redeemer}`)
+                                            window.open(`${JSON.parse(localStorage.getItem("chainInfo") as any).chainConf.blockExplorer}address/${item.detail[0].redeemer}`)
                                         }}
                                     />
                                 </div>
@@ -170,7 +171,7 @@ const ActivityTable = ({ activityList, vaultInfo }: any) => {
                                     Amount
                                 </div>
                                 <div className={classes.cardRightInfo}>
-                                    {Number(item.detail.amount).toFixed(8)}  {item.detail.asset.symbol}  <Avatar className={classes.avatar} src={`${ServerAssetes.Icon + icon[item.detail.asset.symbol as keyof typeof icon]}`} />
+                                    {Number(item.detail.amount).toFixed(8)}  {item.detail.asset.symbol}  <Avatar className={classes.avatar} src={`${ServerAssetes.Icon + getImageUrl(item.detail.asset.symbol)}`} />
                                 </div>
                             </div>
                             {/*incomingAsset*/}
@@ -195,7 +196,7 @@ const ActivityTable = ({ activityList, vaultInfo }: any) => {
                                             cursor: "pointer",
                                         }}
                                         onClick={() => {
-                                            window.open(`https://evm-sidechain.xrpl.org/address/${item.detail.depositor}`)
+                                            window.open(`${JSON.parse(localStorage.getItem("chainInfo") as any).chainConf.blockExplorer}address/${item.detail.depositor}`)
                                         }}
                                     />
                                 </div>

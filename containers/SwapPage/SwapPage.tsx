@@ -17,7 +17,19 @@ const SwapPage = ({ swap, assetList, swapLoading }: any) => {
   let WethToken = JSON.parse(localStorage.getItem("WethToken") as any)
   let WBTCToken = JSON.parse(localStorage.getItem("WBTCToken") as any)
   let WSOLToken = JSON.parse(localStorage.getItem("WSOLToken") as any)
+  const option = [
+    { value: DAIToken.address, label: DAIToken.symbol },
+    { value: WethToken.address, label: WethToken.symbol },
+    // { value: WKLAYToken.address, label: WKLAYToken.symbol },
+    { value: WBTCToken.address, label: WBTCToken.symbol },
+    { value: WSOLToken.address, label: WSOLToken.symbol },
+  ];
+
+  if (JSON.parse(localStorage.getItem("chainInfo") as any).nativeToken.supportSwap) {
+    option.push({ value: JSON.parse(localStorage.getItem("chainInfo") as any).nativeToken.wrappedTokenAddress, label: JSON.parse(localStorage.getItem("chainInfo") as any).nativeToken.symbol })
+  }
   let FactoryAddress = JSON.parse(localStorage.getItem("FactoryAddress") as any)
+
 
   const [sell, setSell] = useState({
     address: DAIToken.address,
@@ -30,7 +42,7 @@ const SwapPage = ({ swap, assetList, swapLoading }: any) => {
   const [chainInfo, setChainInfo] = useState({} as any)
 
   const init = async () => {
-    const data = JSON.parse(localStorage.getItem("chainInfo") as any);
+    const data = JSON.parse(localStorage.getItem("chainInfo") as any)
     let chain = defineChain({
       facuetsUrl: data.chainConf.faucetUrl,
       id: data.chainConf.chainId,
@@ -156,13 +168,7 @@ const SwapPage = ({ swap, assetList, swapLoading }: any) => {
       setBuy({ ...buy, amount: String(Number(buyAmount)) });
     }
   };
-  const option = [
-    { value: DAIToken.address, label: DAIToken.symbol },
-    { value: WethToken.address, label: WethToken.symbol },
-    // { value: WKLAYToken.address, label: WKLAYToken.symbol },
-    { value: WBTCToken.address, label: WBTCToken.symbol },
-    { value: WSOLToken.address, label: WSOLToken.symbol },
-  ];
+
 
   const switchSellBuy = () => {
     setBuy(sell);

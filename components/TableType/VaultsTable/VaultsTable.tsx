@@ -5,7 +5,7 @@ import { Avatar, Spin } from "antd";
 import Link from "next/link";
 import { ServerAssetes } from "../../../utils/consts/Consts";
 import classes from "./style.module.less";
-
+import { getImageUrl } from '../../../utils/TokenIcon/getIconImage'
 function truncateString(inputString: any, maxLength: Number) {
   if (inputString.length > maxLength) {
     return inputString.substring(0, maxLength) + '...';
@@ -44,12 +44,10 @@ const VaultsTable = ({ dataSource, loading, total, setPage, address }: any) => {
       dataIndex: "denominationAssetAddress",
       key: "denominationAssetAddress",
       render: (text: any, row: any) => {
-        let iconAddress =
-          icon[row.denominationAsset.symbol as keyof typeof icon];
         return (
           <div className={classes.denominationAssetColumn}>
             <Avatar
-              src={`${ServerAssetes.Icon + iconAddress}`}
+              src={`${ServerAssetes.Icon + getImageUrl(row.denominationAsset.symbol)}`}
               className={classes.avatar}
             />
             {row.denominationAsset.symbol}

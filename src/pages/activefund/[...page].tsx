@@ -10,7 +10,6 @@ const ActiveFund = () => {
 
 
     const page = () => {
-        console.log(router);
         switch (router.query.page?.length) {
             case 1:
                 switch (router.query.page[0]) {
