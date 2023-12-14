@@ -17,7 +17,7 @@ const AssetTable = ({ assetList }: any) => {
               src={`${ServerAssetes.Icon + getImageUrl(row.asset.symbol)}`}
               className={classes.avatar}
             />
-            {row.asset.symbol}
+            {row.asset.symbol === "WBNB" ? "WDEV" : row.asset.symbol}
           </div>
         );
       },

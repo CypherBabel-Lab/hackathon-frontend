@@ -99,7 +99,7 @@ const ActivityTable = ({ activityList, vaultInfo }: any) => {
                                         Shares Received
                                     </div>
                                     <div>
-                                        {Number(item.detail.incomingAssetAmount).toFixed(2)} {item.detail.incomingAsset.symbol} <Avatar className={classes.avatar} src={`${ServerAssetes.Icon + getImageUrl(item.detail.incomingAsset.symbol)}`} />
+                                        {Number(item.detail.incomingAssetAmount).toFixed(2)} {item.detail.incomingAsset.symbol === "WBNB" ? "WDEV" : item.detail.incomingAsset.symbol} <Avatar className={classes.avatar} src={`${ServerAssetes.Icon + getImageUrl(item.detail.incomingAsset.symbol)}`} />
                                     </div>
                                 </div>
                                 {/* Depositor  */}
