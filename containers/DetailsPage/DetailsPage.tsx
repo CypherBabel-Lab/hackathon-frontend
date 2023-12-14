@@ -711,7 +711,7 @@ const DetailsPage = () => {
       method: "wallet_addEthereumChain",
       params: [
         {
-          chainId: ethers.utils.hexlify(chainInfo.id),
+          chainId: "0x" + Number(chainInfo.id).toString(16),
           rpcUrls: [chainInfo.rpcUrls.default.http[0]],
           chainName: chainInfo.name,
           nativeCurrency: {

@@ -110,11 +110,16 @@ const PcHeadr = () => {
                 <div
                   className={`${"switchNetworksBtn"} ${classes.switchNetworksBtn}`}
                   onClick={async () => {
+                    console.log(chainInfo.id);
+                    console.log(Number(chainInfo.id).toString(16));
+                    console.log(ethers.utils.hexlify(chainInfo.id));
+                    console.log(ethers.utils.hexlify(97));
+
                     await (window as any).ethereum.request({
                       method: "wallet_addEthereumChain",
                       params: [
                         {
-                          chainId: ethers.utils.hexlify(chainInfo.id),
+                          chainId: "0x" + Number(chainInfo.id).toString(16),
                           rpcUrls: [chainInfo.rpcUrls.default.http[0]],
                           chainName: chainInfo.name,
                           nativeCurrency: {
