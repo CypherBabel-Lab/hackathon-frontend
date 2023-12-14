@@ -311,7 +311,7 @@ const DetailsPage = () => {
         functionName: "buyShares",
         args: [ethers.utils.parseEther(depositNum), 100],
         account: address[0],
-        gas: 4000000,
+        gas: 5000000,
       });
       setHash(depositHash);
       setModalOkLoading(false)
@@ -421,7 +421,7 @@ const DetailsPage = () => {
           [...initWithdrawFuc(init).proportion],
         ],
         account: address[0],
-        gas: 4000000,
+        gas: 5000000,
       });
       setHash(withdrawHash);
       setModalOkLoading(false)

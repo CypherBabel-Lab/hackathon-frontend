@@ -85,6 +85,7 @@ const CreateVaultPage = () => {
 
   const createNewVault = async () => {
     setModalOkLoading(true)
+    console.log(createObj.asset);
     try {
       const hash = await walletClient.writeContract({
         address: createContractAddress,
@@ -92,12 +93,12 @@ const CreateVaultPage = () => {
         functionName: "createNewVault",
         args: [createObj.name, createObj.symbol, createObj.asset, 100],
         account: address,
-        gas: 2000000,
       });
       setHash(hash);
       setCreateTradeStaus(false);
       setModalOkLoading(false)
     } catch (e) {
+      console.log(e);
       setErrorModal(true);
       setModalOkLoading(false)
       setErrorMessage(JSON.parse(JSON.stringify(e)));
@@ -214,6 +215,7 @@ const CreateVaultPage = () => {
             setCreateModal(false);
             setModalOkLoading(false)
           }}
+          maskClosable={false}
           cancelButtonProps={{
             style: {
               display: isLoading ? "none" : "",
